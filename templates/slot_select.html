@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>🎰 Slot-Auswahl</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .slot-selection {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .slot-card {
+            background: #222;
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .slot-card:hover {
+            transform: scale(1.05);
+        }
+
+        .slot-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .slot-card h2 {
+            margin-top: 10px;
+        }
+
+        .slot-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: gold;
+            color: black;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .balance {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎰 Wähle deinen Slot</h1>
+    <p class="balance">Guthaben: {{ balance }} Coins</p>
+
+    <div class="slot-selection">
+        <div class="slot-card">
+            <img src="/static/Book_of_Joschua/Background.png" alt="Book Slot">
+            <h2>📖 Book of Joschua</h2>
+            <a href="/slot_book">Spielen</a>
+        </div>
+
+        <div class="slot-card">
+            <img src="/static/classic_slot_preview.png" alt="Classic Slot">
+            <h2>🎲 Classic Slot</h2>
+            <a href="/slot_classic">Spielen</a>
+        </div>
+    </div>
+</body>
+</html>
