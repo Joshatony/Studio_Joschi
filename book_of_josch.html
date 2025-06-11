@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>📖 Book of Dead Slot</title>
+    <link rel="stylesheet" href="/static/Book_of_Joschua/">
+</head>
+<body style="background-image: url('/static/Book_of_Joschua/'); background-size: cover;">
+
+    <div class="game-container">
+        <h1>📖 Book of josch Slot</h1>
+        <p>Guthaben: <span id="balance">{{ balance }}</span> Coins</p>
+
+        <div class="reels">
+            <img id="slot1" src="/static/Book_of_Joschua/symbol_1.png">
+            <img id="slot2" src="/static/Book_of_Joschua/symbol_2.png">
+            <img id="slot3" src="/static/Book_of_Joschua/symbol_3.png">
+            <img id="slot4" src="/static/Book_of_Joschua/symbol_4.png">
+            <img id="slot5" src="/static/Book_of_Joschua/symbol_5.png">
+        </div>
+
+        <img src="/static/Book_of_Joschua/spin_button.jpg" class="spin-btn" onclick="spin()">
+        <p id="result"></p>
+        <a href="/verify">🔍 Seed prüfen</a>
+    </div>
+
+    <script>
+        async function spin() {
+            document.getElementById("result").textContent = "Dreht...";
+            const response = await fetch('/book_spin');
+            const data = await response.json();
+
+            document.getElementById("slot1").src = `/static/Book_of_Joschua/${data.symbols[0]}.png`;
+            document.getElementById("slot2").src = `/static/book_of_Joschua/${data.symbols[1]}.png`;
+            document.getElementById("slot3").src = `/static/Book_of_Joschua/${data.symbols[2]}.png`;
+            document.getElementById("slot4").src = `/static/Book_of_Joschua/${data.symbols[3]}.png`;
+            document.getElementById("slot5").src = `/static/Book_of_Joschua/${data.symbols[4]}.png`;
+            document.getElementById("balance").textContent = data.balance;
+            document.getElementById("result").textContent = data.message;
+        }
+    </script>
+</body>
+</html>

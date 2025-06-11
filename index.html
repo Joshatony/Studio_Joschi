@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>🎰 Slot Casino</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <p>Angemeldet als: {{ username }} | <a href="/logout">🚪 Logout</a></p>
+
+        <h1>🎰 Slot Casino</h1>
+        <p>Guthaben: <span id="balance">{{ balance }}</span> Coins</p>
+
+        <div class="slot-machine">
+            <div class="slot" id="slot1">❓</div>
+            <div class="slot" id="slot2">❓</div>
+            <div class="slot" id="slot3">❓</div>
+        </div>
+
+        <button onclick="spin()">Spin starten (10 Coins)</button>
+        <p id="result"></p>
+
+        <a href="/verify">🔍 Seed prüfen</a>
+    </div>
+    
+       <h1>Willkommen, {{ username }}!</h1>
+        <p>Wähle deinen Slot:</p>
+
+      <ul>
+           <li><a href="{{ url_for('slot', name='classic') }}">🎰 Klassischer Slot</a></li>
+           <li><a href="{{ url_for('slot', name='fancy') }}">✨ Fancy Slot</a></li>
+      </ul>
+
+      <p>Guthaben: {{ balance }} | <a href="/logout">Logout</a></p>
+
+
+
+    <script>
+        async function spin() {
+            document.getElementById("slot1").textContent = "🎲";
+            document.getElementById("slot2").textContent = "🎲";
+            document.getElementById("slot3").textContent = "🎲";
+
+            const response = await fetch('/spin');
+            const data = await response.json();
+
+            document.getElementById("slot1").textContent = data.symbols[0];
+            document.getElementById("slot2").textContent = data.symbols[1];
+            document.getElementById("slot3").textContent = data.symbols[2];
+
+            document.getElementById("balance").textContent = data.balance;
+            document.getElementById("result").textContent = data.message;
+        }
+    </script>
+
+    <button onclick="reloadCoins()">💰 Guthaben aufladen</button>
+    
+    
+    <script>
+      async function reloadCoins() {
+        const response = await fetch('/reload');
+        const data = await response.json();
+        document.getElementById("balance").textContent = data.balance;
+        document.getElementById("result").textContent = "Guthaben aufgeladen!";
+    }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
